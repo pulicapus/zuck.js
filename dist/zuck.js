@@ -953,7 +953,7 @@
         setDuration();
         video.addEventListener('loadedmetadata', setDuration);
         zuck.internalData['currentVideoElement'] = video;
-        video.play();
+        video.play().catch(() => {});
 
         if (unmute && unmute.target) {
           unmuteVideoItem(video, storyViewer);
@@ -968,7 +968,7 @@
 
       if (video) {
         try {
-          video.pause();
+          video.pause().catch(() => {});
         } catch (e) {}
       }
     };
@@ -977,11 +977,11 @@
       video.muted = false;
       video.volume = 1.0;
       video.removeAttribute('muted');
-      video.play();
+      video.play().catch(() => {});
 
       if (video.paused) {
         video.muted = true;
-        video.play();
+        video.play().catch(() => {});
       }
 
       if (storyViewer) {
